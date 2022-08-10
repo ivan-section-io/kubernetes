@@ -503,6 +503,13 @@ const (
 	// Enable the aggregated discovery timeout to ensure client responsiveness. Note this feature is present
 	// only for backward compatibility, it will be removed in the 1.17 release.
 	EnableAggregatedDiscoveryTimeout featuregate.Feature = "EnableAggregatedDiscoveryTimeout"
+
+	// owner: @freehan
+	// GA: v1.18
+	//
+	// Enable ExternalTrafficPolicy for Service ExternalIPs.
+	// This is for bug fix #69811
+	ExternalPolicyForExternalIP featuregate.Feature = "ExternalPolicyForExternalIP"
 )
 
 func init() {
@@ -584,6 +591,7 @@ var defaultKubernetesFeatureGates = map[featuregate.Feature]featuregate.FeatureS
 	EndpointSlice:                                  {Default: false, PreRelease: featuregate.Alpha},
 	EvenPodsSpread:                                 {Default: false, PreRelease: featuregate.Alpha},
 	StartupProbe:                                   {Default: false, PreRelease: featuregate.Alpha},
+	ExternalPolicyForExternalIP:                    {Default: false, PreRelease: featuregate.GA}, // remove in 1.19
 
 	// inherited features from generic apiserver, relisted here to get a conflict if it is changed
 	// unintentionally on either side:
